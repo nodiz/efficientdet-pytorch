@@ -70,11 +70,15 @@ def create_dataset(name, root, splits=('train', 'val')):
                 )
                 parser = create_parser(dataset_cfg.parser, cfg=parser_cfg)
             datasets[s] = dataset_cls(data_dir=root, parser=parser)
+            
     elif name.startswith('openimages'):
         if 'challenge2019' in name:
             dataset_cfg = OpenImagesObjChallenge2019Cfg()
+        elif 'web' in name.lower():
+            dataset_cfg = OpenImagesWebsite()
         else:
             dataset_cfg = OpenImagesObjV5Cfg()
+            
         for s in splits:
             if s not in dataset_cfg.splits:
                 raise RuntimeError(f'{s} split not found in config')

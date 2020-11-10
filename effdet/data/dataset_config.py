@@ -57,7 +57,7 @@ class Voc2007Cfg(VocCfg):
             split_filename='VOC2007/ImageSets/Main/val.txt',
             ann_filename='VOC2007/Annotations/%s.xml',
             img_dir='VOC2007/JPEGImages'),
-        #test=dict(img_dir='JPEGImages')
+        # test=dict(img_dir='JPEGImages')
     ))
 
 
@@ -73,7 +73,7 @@ class Voc2012Cfg(VocCfg):
             split_filename='VOC2012/ImageSets/Main/val.txt',
             ann_filename='VOC2012/Annotations/%s.xml',
             img_dir='VOC2012/JPEGImages'),
-        #test=dict(img_dir='JPEGImages', split_file=None)
+        # test=dict(img_dir='JPEGImages', split_file=None)
     ))
 
 
@@ -89,9 +89,8 @@ class Voc0712Cfg(VocCfg):
             split_filename='VOC2007/ImageSets/Main/test.txt',
             ann_filename='VOC2007/Annotations/%s.xml',
             img_dir='VOC2007/JPEGImages'),
-        #test=dict(img_dir='JPEGImages', split_file=None)
+        # test=dict(img_dir='JPEGImages', split_file=None)
     ))
-
 
 
 @dataclass
@@ -176,4 +175,47 @@ class OpenImagesSegChallenge2019Cfg(OpenImagesSegCfg):
         train=dict(),
         val=dict(),
         test=dict()
+    ))
+
+
+@dataclass
+class OpenImagesObjChallenge2019Cfg(OpenImagesObjCfg):
+    num_classes: int = 500
+    categories_map: str = 'annotations/challenge-2019/challenge-2019-classes-description-500.csv'
+    splits: Dict[str, dict] = field(default_factory=lambda: dict(
+        train=dict(
+            img_dir='train', img_info='annotations/train-info.csv', has_labels=True, prefix_levels=1,
+            ann_bbox='annotations/challenge-2019/challenge-2019-train-detection-bbox.csv',
+            ann_img_label='annotations/challenge-2019/challenge-2019-train-detection-human-imagelabels.csv',
+        ),
+        val=dict(
+            img_dir='validation', img_info='annotations/validation-info.csv', has_labels=True, prefix_levels=0,
+            ann_bbox='annotations/challenge-2019/challenge-2019-validation-detection-bbox.csv',
+            ann_img_label='annotations/challenge-2019/challenge-2019-validation-detection-human-imagelabels.csv',
+        ),
+        test=dict(
+            img_dir='challenge2019', img_info='annotations/challenge-2019/challenge2019-info', prefix_levels=0,
+            has_labels=False, ann_bbox='', ann_img_label='',
+        )
+    ))
+
+
+@dataclass
+class OpenImagesWebsite(OpenImagesObjCfg):
+    num_classes: int = 601
+    categories_map: str = 'oid_annotations/class-descriptions-boxable.csv'
+    splits: Dict[str, dict] = field(default_factory=lambda: dict(
+        train=dict(
+            img_dir='train', img_info='oid_annotations/oidv6-train-images-with-labels-with-rotation.csv',
+            has_labels=True, prefix_levels=1,
+            ann_bbox='oid_annotations/oidv6-train-annotations-bbox.csv',
+        ),
+        val=dict(
+            img_dir='validation', img_info='oid_annotations/validation-info.csv', has_labels=True, prefix_levels=0,
+            ann_bbox='oid_annotations/validation-images-with-rotation.csv',
+        ),
+        test=dict(
+            img_dir='challenge2019', img_info='oid_annotations/test-images-with-rotation.csv', prefix_levels=0,
+            has_labels=True, ann_bbox='oid_annotations/test-annotations-bbox.csv', ann_img_label='',
+        )
     ))
