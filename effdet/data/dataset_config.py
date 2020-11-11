@@ -207,15 +207,15 @@ class OpenImagesWebsite(OpenImagesObjCfg):
     splits: Dict[str, dict] = field(default_factory=lambda: dict(
         train=dict(
             img_dir='train', img_info='oid_annotations/oidv6-train-images-with-labels-with-rotation.csv',
-            has_labels=True, prefix_levels=1,
+            has_labels=True, ann_img_label='', prefix_levels=1,
             ann_bbox='oid_annotations/oidv6-train-annotations-bbox.csv',
         ),
         val=dict(
-            img_dir='validation', img_info='oid_annotations/validation-info.csv', has_labels=True, prefix_levels=0,
+            img_dir='validation', img_info='oid_annotations/validation-info.csv', ann_img_label='', has_labels=True, prefix_levels=0,
             ann_bbox='oid_annotations/validation-images-with-rotation.csv',
         ),
         test=dict(
-            img_dir='challenge2019', img_info='oid_annotations/test-images-with-rotation.csv', prefix_levels=0,
-            has_labels=True, ann_bbox='oid_annotations/test-annotations-bbox.csv', ann_img_label='',
+            img_dir='challenge2019', img_info='oid_annotations/test-images-with-rotation.csv', ann_img_label='', prefix_levels=0,
+            has_labels=True, ann_bbox='oid_annotations/test-annotations-bbox.csv',
         )
     ))
