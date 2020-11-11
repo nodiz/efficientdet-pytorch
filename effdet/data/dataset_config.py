@@ -219,3 +219,14 @@ class OpenImagesWebsite(OpenImagesObjCfg):
             has_labels=True, ann_bbox='oid_annotations/test-annotations-bbox.csv',
         )
     ))
+
+
+@dataclass
+class CocoOID(CocoCfg):
+    variant: str = 'OpenImages'
+    splits: Dict[str, dict] = field(default_factory=lambda: dict(
+        train=dict(ann_filename='annotations/train_cocoboxes.json', img_dir='train', has_labels=True),
+        val=dict(ann_filename='annotations/val_cocoboxes.json', img_dir='val', has_labels=True),
+        test=dict(ann_filename='annotations/test_cocoboxes.json', img_dir='test', has_labels=True),
+        testdev=dict(ann_filename='annotations/test_cocoboxes.json', img_dir='test', has_labels=False),
+    ))
