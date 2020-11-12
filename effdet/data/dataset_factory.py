@@ -23,7 +23,12 @@ def create_dataset(name, root, splits=('train', 'val')):
         if 'coco2014' in name:
             dataset_cfg = Coco2014Cfg()
         elif 'oid' in name:
-            dataset_cfg = CocoOID()
+            if 'croco' in name:
+                dataset_cfg = CocoOIDcroc()
+            elif 'animal' in name:
+                dataset_cfg = CocoOIDanim()
+            elif 'all' in name:
+                dataset_cfg = CocoOIDall()
             if "testdev" in splits:
                 splits = splits[:-1]
         else:

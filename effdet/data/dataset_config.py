@@ -230,3 +230,35 @@ class CocoOID(CocoCfg):
         test=dict(ann_filename='annotations/test_cocoboxes.json', img_dir='test', has_labels=True),
         testdev=dict(ann_filename='annotations/test_cocoboxes.json', img_dir='test', has_labels=False),
     ))
+
+@dataclass
+class CocoOIDcroc(CocoCfg):
+    variant: str = 'OpenImages'
+    splits: Dict[str, dict] = field(default_factory=lambda: dict(
+        train=dict(ann_filename='annotations/croco/train_cocoboxes.json', img_dir='train', has_labels=True),
+        val=dict(ann_filename='annotations/croco/val_cocoboxes.json', img_dir='val', has_labels=True),
+        test=dict(ann_filename='annotations/croco/test_cocoboxes.json', img_dir='test', has_labels=True),
+        testdev=dict(ann_filename='annotations/croco/test_cocoboxes.json', img_dir='test', has_labels=False),
+    ))
+
+@dataclass
+class CocoOIDanim(CocoCfg):
+    variant: str = 'OpenImages'
+    splits: Dict[str, dict] = field(default_factory=lambda: dict(
+        train=dict(ann_filename='annotations/animals/train_cocoboxes.json', img_dir='train', has_labels=True),
+        val=dict(ann_filename='annotations/animals/val_cocoboxes.json', img_dir='val', has_labels=True),
+        test=dict(ann_filename='annotations/animals/test_cocoboxes.json', img_dir='test', has_labels=True),
+        testdev=dict(ann_filename='annotations/animals/test_cocoboxes.json', img_dir='test', has_labels=False),
+    ))
+    
+@dataclass
+class CocoOIDall(CocoCfg):
+    variant: str = 'OpenImages'
+    splits: Dict[str, dict] = field(default_factory=lambda: dict(
+        train=dict(ann_filename='annotations/all/train_cocoboxes.json', img_dir='train', has_labels=True),
+        val=dict(ann_filename='annotations/all/val_cocoboxes.json', img_dir='val', has_labels=True),
+        test=dict(ann_filename='annotations/all/test_cocoboxes.json', img_dir='test', has_labels=True),
+        testdev=dict(ann_filename='annotations/all/test_cocoboxes.json', img_dir='test', has_labels=False),
+    ))
+
+
